@@ -5,7 +5,7 @@ FROM alpine:3.8
 RUN apk update && apk add ca-certificates emacs
 RUN apk add --no-cache curl
 
-# Set MY_LIB_DIR - you can copy there your app in derived images.
+# Set MY_LIB_DIR - You can use this directory for copying derived image files.
 ENV MY_LIB_DIR /opt/mylib
 
 RUN mkdir -p $MY_LIB_DIR

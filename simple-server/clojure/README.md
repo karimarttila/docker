@@ -11,23 +11,23 @@
 
 ## Introduction
 
-This is the Docker image for [Simple Server Clojure](TODO) version. I just wanted to demonstrate how to create a Docker image for the Simple Server. The Docker image uses [karimarttila/alpine3.8](TODO) base image.
+This is the Docker image for [Simple Server Clojure](https://github.com/karimarttila/clojure/tree/master/clj-ring-cljs-reagent-demo/simple-server) version. I just wanted to demonstrate how to create a Docker image for the Simple Server. The Docker image uses [karimarttila/alpine3.8](https://github.com/karimarttila/docker/tree/master/alpine) base image.
 
 
 ## Layers
 
 This image uses the following base images:
 
-- [karimarttila/alpine 3.8](TODO) - The base image, which is based on [Alpine Linux](https://alpinelinux.org/).
+- [karimarttila/alpine 3.8](https://github.com/karimarttila/docker/tree/master/alpine) - The base image, which is based on [Alpine Linux](https://alpinelinux.org/).
 
-This image adds the following layers:
+This image installs the following packages:
 
-- [OpenJDK Java 8 JRE](http://openjdk.java.net/) - Installed into this image.
+- [OpenJDK Java 8 JRE](http://openjdk.java.net/)
 
 
 ## Environmental Variables and Entrypoint
 
-The base image has set MY_LIB_DIR environmental variable which points to a directory that can be used by the derived images to copy the binaries, libraries, properties files and other files they need.
+The base image has set MY_LIB_DIR environmental variable which points to a directory that this image uses to copy the binaries, libraries, properties files and other files it needs.
 
 This image provides the my-entrypoint.sh shell script which starts the server.
 
@@ -53,7 +53,9 @@ E.g.
 ./run-container.sh 0.1
 ```
 
-NOTE: You can also use these commands:
+The container starts the server and forwards its internal port 3045 to host port 3045 so that you can use the same curl test files in Clojure Simple Server [scripts](https://github.com/karimarttila/clojure/tree/master/clj-ring-cljs-reagent-demo/simple-server/scripts) directory that you could use to test the standalone server running directly on the host machine.
+
+NOTE: You might find also these commands useful:
 
 ```bash
 # If you have problems starting the container, get a shell session to the container and check it inside:
