@@ -1,9 +1,8 @@
-FROM alpine:3.8
+ARG base_tag
+FROM karimarttila/alpine3.8:$base_tag
 
-# A couple of packages to debug Docker image.
-# You can comment these later when creating the final image.
-RUN apk update && apk add ca-certificates emacs
-RUN apk add --no-cache curl
+# Install OpenJDK8 - Clojure app needs it.
+RUN apk --update add openjdk8-jre
 
 # Set MY_LIB_DIR - You can use this directory for copying derived image files.
 ENV MY_LIB_DIR /opt/mylib
