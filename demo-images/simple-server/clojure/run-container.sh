@@ -6,7 +6,7 @@ then
     echo "Examples:"
     echo "./run-container.sh karimarttila/simple-server-clojure-single-node 0.1"
     echo "If you have problems starting the container, check it using sh:"
-    echo "  docker run -it --entrypoint /bin/sh karimarttila/simple-server-clojure-single-node:0.1"
+    echo "  docker run -it --entrypoint /bin/bash karimarttila/simple-server-clojure-single-node:0.1"
     echo "You can get a terminal to running container, use commands:"
     echo "  docker ps -a => check the container name"
     echo "  docker exec -it <container-name> sh"

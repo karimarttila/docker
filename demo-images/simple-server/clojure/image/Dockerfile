@@ -6,6 +6,7 @@ FROM karimarttila/debian-openjdk11:$base_tag
 ENV CLASSPATH $MY_LIB_DIR
 
 COPY app.jar $MY_LIB_DIR
+COPY .lein-env $MY_LIB_DIR
 RUN mkdir -p $MY_LIB_DIR/resources
 COPY resources/ $MY_LIB_DIR/resources
 COPY my-entrypoint.sh .
