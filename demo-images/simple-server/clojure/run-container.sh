@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 then
-    echo "Usage: ./run-container.sh <my-tag>"
+    echo "Usage: ./run-container.sh <my-name> <my-tag>"
     echo "Examples:"
-    echo "./run-container.sh 0.1"
+    echo "./run-container.sh karimarttila/simple-server-clojure-single-node 0.1"
     echo "If you have problems starting the container, check it using sh:"
-    echo "  docker run -it --entrypoint /bin/sh karimarttila/simple-server-clojure:0.1"
+    echo "  docker run -it --entrypoint /bin/sh karimarttila/simple-server-clojure-single-node:0.1"
     echo "You can get a terminal to running container, use commands:"
     echo "  docker ps -a => check the container name"
     echo "  docker exec -it <container-name> sh"
@@ -15,6 +15,6 @@ then
     exit 1
 fi
 
-MY_NAME="karimarttila/simple-server-clojure"
-MY_TAG=$1
+MY_NAME=$1
+MY_TAG=$2
 docker run -p 3045:3045 $MY_NAME:$MY_TAG

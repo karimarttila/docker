@@ -1,8 +1,9 @@
 ARG base_tag
-FROM karimarttila/alpine3.8:$base_tag
+FROM openjdk:11
 
-# Install OpenJDK8 - Clojure app needs it.
-RUN apk --update add openjdk8-jre
+# Install Emacs.
+RUN apt update
+RUN apt install -y emacs-nox
 
 # Set MY_LIB_DIR - You can use this directory for copying derived image files.
 ENV MY_LIB_DIR /opt/mylib

@@ -2,13 +2,11 @@
 
 if [ $# -ne 4 ]
 then
-    echo "Usage: ./build-docker-image.sh <base-tag> <my-tag> <jar-file> <resources-dir>"
-    echo "Examples:"
-    echo "./build-docker-image.sh 0.1 0.1 lib/simple-server-1.0-standalone.jar resources"
+    echo "Usage: ./build-docker-image-single-node.sh <base-tag> <my-tag> <jar-file> <resources-dir>"
     exit 1
 fi
 
-MY_NAME="karimarttila/simple-server-clojure"
+MY_NAME="karimarttila/simple-server-clojure-single-node"
 BASE_TAG=$1
 MY_TAG=$2
 JAR_FILE=$3

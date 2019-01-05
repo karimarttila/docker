@@ -1,49 +1,46 @@
 # Simple Server Clojure Docker Image <!-- omit in toc -->
 
 
-## Table of Contents  <!-- omit in toc -->
+# Table of Contents  <!-- omit in toc -->
 - [Introduction](#introduction)
-- [Layers](#layers)
 - [Environmental Variables and Entrypoint](#environmental-variables-and-entrypoint)
 - [Build Instructions](#build-instructions)
+  - [Single-Node Version](#single-node-version)
 - [Run Container](#run-container)
 
 
-## Introduction
+# Introduction
 
-This is the Docker image for [Simple Server Clojure](https://github.com/karimarttila/clojure/tree/master/clj-ring-cljs-reagent-demo/simple-server) version. I just wanted to demonstrate how to create a Docker image for the Simple Server. The Docker image uses [karimarttila/alpine3.8](https://github.com/karimarttila/docker/tree/master/alpine) base image.
-
-
-## Layers
-
-This image uses the following base images:
-
-- [karimarttila/alpine 3.8](https://github.com/karimarttila/docker/tree/master/alpine) - The base image, which is based on [Alpine Linux](https://alpinelinux.org/).
-
-This image installs the following packages:
-
-- [OpenJDK Java 8 JRE](http://openjdk.java.net/)
+This is the Docker image for [Simple Server Clojure](https://github.com/karimarttila/clojure/tree/master/clj-ring-cljs-reagent-demo/simple-server) version. I just wanted to demonstrate how to create a Docker image for the Simple Server. The Docker image uses [karimarttila/alpine3.8-java8](https://github.com/karimarttila/docker/tree/master/base-images/alpine-java8) base image.
 
 
-## Environmental Variables and Entrypoint
+
+# Environmental Variables and Entrypoint
 
 The base image has set MY_LIB_DIR environmental variable which points to a directory that this image uses to copy the binaries, libraries, properties files and other files it needs.
 
 This image provides the my-entrypoint.sh shell script which starts the server.
 
 
-## Build Instructions
+# Build Instructions
 
-Run: ```./build-docker-image.sh <base-tag> <my-tag> <jar-file> <resources-dir>```
+NOTE: 
+
+- Remember to build the version you want to use in the Docker image (e.g. single-node, aws dynamodb or azure table storage version.
+- Leiningen creates two jars: use the standalone version which comprises Clojure runtime.
+
+## Single-Node Version
+
+Run: ```./build-docker-image-single-node.sh <base-tag> <my-tag> <jar-file> <resources-dir>```
 
 E.g. in my machine I run:
 
 ```bash
-./build-docker-image.sh 0.1 0.1 /mnt/edata/aw/kari/github/clojure/clj-ring-cljs-reagent-demo/simple-server/target/uberjar/simple-server-1.0-standalone.jar /mnt/edata/aw/kari/github/clojure/clj-ring-cljs-reagent-demo/simple-server/resources
+./build-docker-image-single-node.sh 0.1 0.1 /mnt/edata/aw/kari/github/clojure/clj-ring-cljs-reagent-demo/simple-server/target/uberjar/simple-server-1.0-standalone.jar /mnt/edata/aw/kari/github/clojure/clj-ring-cljs-reagent-demo/simple-server/resources
 ```
 
 
-## Run Container
+# Run Container
 
 Run: ```./run-container.sh <my-tag>```
 
@@ -59,7 +56,7 @@ NOTE: You might find also these commands useful:
 
 ```bash
 # If you have problems starting the container, get a shell session to the container and check it inside:
-docker run -it --entrypoint /bin/sh karimarttila/simple-server-clojure:0.1
+docker run -it --entrypoint /bin/sh karimarttila/simple-server-clojure-single-node:0.1
 # You can get a terminal to a running container, use commands:
 docker ps -a => check the container name
 docker exec -it <container-name> sh
