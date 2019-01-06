@@ -42,12 +42,13 @@ E.g. in my machine I run:
 
 # Run Container
 
-Run: ```./run-container.sh <my-tag>```
+You can run the various versions of Simple Server Docker images using script ```./run-container.sh```
 
-E.g. 
+Example:
 
 ```bash
-./run-container.sh 0.1
+docker images # => See what versions you have.
+./run-container.sh karimarttila/simple-server-clojure-single-node 0.1
 ```
 
 The container starts the server and forwards its internal port 3045 to host port 3045 so that you can use the same curl test files in Clojure Simple Server [scripts](https://github.com/karimarttila/clojure/tree/master/clj-ring-cljs-reagent-demo/simple-server/scripts) directory that you could use to test the standalone server running directly on the host machine.
