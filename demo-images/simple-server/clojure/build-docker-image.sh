@@ -25,6 +25,10 @@ elif [ "$SS_VERSION" == "table-storage" ]; then
   MY_NAME="karimarttila/simple-server-clojure-table-storage"
   MY_BUILD_SCRIPT="./build-azure-table-storage-distributable.sh"
 elif [ "$SS_VERSION" == "dynamodb" ]; then
+  if [[ -z "${SS_TABLE_PREFIX}" ]]; then
+    echo "SS_TABLE_PREFIX not set"
+    exit -1
+  fi
   MY_NAME="karimarttila/simple-server-clojure-dynamodb"
   MY_BUILD_SCRIPT="./build-aws-dynamodb-distributable.sh"
 else
