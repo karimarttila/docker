@@ -30,7 +30,7 @@ elif [ "$SS_VERSION" == "dynamodb" ]; then
     exit -1
   fi
   MY_NAME="karimarttila/simple-server-clojure-dynamodb"
-  MY_BUILD_SCRIPT="./build-aws-dynamodb-distributable.sh"
+  MY_BUILD_SCRIPT="./build-aws-eks-dynamodb-distributable.sh"
 else
   echo "Unknown choice: $SS_VERSION"
   exit 2
