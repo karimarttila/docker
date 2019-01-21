@@ -53,7 +53,8 @@ CMD_BUILD="docker build -f Dockerfile -t $MY_NAME:$MY_TAG --build-arg base_tag=$
 
 cp $SS_DIR/target/uberjar/simple-server-1.0-standalone.jar image/app.jar
 cp -r $SS_DIR/resources image/.
-cp -r $SS_DIR/.lein-env image/.
+# NOTE: Do not take .lein-env since it overrides environmental variables set in Kubernetes deployment configuration!
+#cp $SS_DIR/.lein-env image/.
 cp lib/$MY_ENTRY_POINT_FILE image/.
 cd image
 echo "Parameters:"
@@ -70,6 +71,6 @@ echo "Cleaning ..."
 rm -rf resources
 rm *.jar
 rm *.sh
-rm .lein-env
+#rm .lein-env
 cd ..
 echo "All Done"
